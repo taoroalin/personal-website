@@ -2,9 +2,7 @@
   (:require
    [graphminer.net.handler :refer [app]]
    [config.core :refer [env]]
-   [ring.adapter.jetty :refer [run-jetty]]
-   [clojure.java.io :as io]
-   [markdown-to-hiccup :as md])
+   [ring.adapter.jetty :refer [run-jetty]])
   (:gen-class))
 
 
