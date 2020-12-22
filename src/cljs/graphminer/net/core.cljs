@@ -31,6 +31,7 @@
 
 (defn about-page []
   (fn [] [:span.main
+          [:p "I am interested in virtual reality, programming languages, functional programming, artificial intelligence, AI existential risk, rationality, and effective altruism."]
           [:p "I program in Clojure, TypeScript, and most recently C#. I'm currently working on a VR tool for working inside network graphs."]
           [:p "My favorite musician is " [:a {:href "https://open.spotify.com/artist/0xu4jAQQv7ZAqvFGdc9HgP?autoplay=true"} "Boy in Space"] ", my favorite shape is the " [:a {:href "https://en.wikipedia.org/wiki/Great_stellated_120-cell"} "Great Stellated 120 Cell"] ", my favorite video game is " [:a {:href "https://store.steampowered.com/app/617830/SUPERHOT_VR/"} "Superhot VR"]]]))
 
