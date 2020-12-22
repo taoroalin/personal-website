@@ -2,11 +2,16 @@
   margin-right: 20px;
 }
 
+li {
+  list-style: none;
+  margin-top: 20px;
+}
+
 .body-container {
   font-family: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
-  max-width: 640px;
+  max-width: 800px;
   margin: 0 auto;
-  padding-top: 72px;
+  padding-top: 0px;
   -webkit-font-smoothing: antialiased;
   font-size: 1.125em;
   color: #333;
@@ -17,10 +22,11 @@ h1,
 h2,
 h3 {
   color: #000;
+  line-height: 1.2;
 }
 
 h1 {
-  font-size: 2.5em
+  font-size: 2.5em;
 }
 
 h2 {

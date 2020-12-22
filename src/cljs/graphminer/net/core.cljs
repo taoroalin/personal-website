@@ -5,7 +5,8 @@
    [reagent.session :as session]
    [reitit.frontend :as reitit]
    [clerk.core :as clerk]
-   [accountant.core :as accountant]))
+   [accountant.core :as accountant]
+   [graphminer.net.blogs :refer [blogs-hiccup]]))
 
 ;; -------------------------
 ;; Routes
@@ -13,10 +14,8 @@
 (def router
   (reitit/router
    [["/" :index]
-    ["/items"
-     ["" :items]
-     ["/:item-id" :item]]
-    ["/about" :about]]))
+    ["/about" :about]
+    ["/blog" :blog]]))
 
 (defn path-for [route & [params]]
   (if params
@@ -26,34 +25,10 @@
 ;; -------------------------
 ;; Page components
 
-(defn home-page []
-  (fn []
-    [:span.main
-     [:h1 "Welcome to graphminer.net"]
-     [:ul
-      [:li [:a {:href (path-for :items)} "Items of graphminer.net"]]
-      [:li [:a {:href "/broken/link"} "Broken link"]]]]))
 
-
-
-(defn items-page []
-  (fn []
-    [:span.main
-     [:h1 "The items of graphminer.net"]
-     [:ul (map (fn [item-id]
-                 [:li {:name (str "item-" item-id) :key (str "item-" item-id)}
-                  [:a {:href (path-for :item {:item-id item-id})} "Item: " item-id]])
-               (range 1 60))]]))
-
-
-(defn item-page []
-  (fn []
-    (let [routing-data (session/get :route)
-          item (get-in routing-data [:route-params :item-id])]
-      [:span.main
-       [:h1 (str "Item " item " of graphminer.net")]
-       [:p [:a {:href (path-for :items)} "Back to the list of items"]]])))
-
+(defn blog []
+  (print blogs-hiccup)
+  (fn [] [:div blogs-hiccup]))
 
 (defn about-page []
   (fn [] [:span.main
@@ -65,10 +40,9 @@
 
 (defn page-for [route]
   (case route
-    :index #'home-page
+    :index #'about-page
     :about #'about-page
-    :items #'items-page
-    :item #'item-page))
+    :blog #'blog))
 
 
 ;; -------------------------
@@ -78,12 +52,14 @@
   (fn []
     (let [page (:current-page (session/get :route))]
       [:div
-       [:header
-        [:p [:a {:href (path-for :index)} "Home"] " | "
-         [:a {:href (path-for :about)} "Web Dev Demo"]]]
+       [:header {:style {:display "flex" :flex-direction "row" :align-items "center"}}
+        [:h1 {:style {:margin-right "30px"}} "Tao Lin"]
+        [:p [:a {:href (path-for :index)} "About"] " | "
+         [:a {:href (path-for :blog)} "Blog"] " | "
+         [:a {:href "https://boiling-peak-00646.herokuapp.com/"} "Web Dev Demo"]]]
        [page]
        [:footer
-        [:div {:style {:display "flex" :flex-direction "column"}}
+        [:div {:style {:display "flex" :flex-direction "column" :margin-top "80px"}}
          [:div.my-links
           [:a {:href "https://twitter.com/taoroalin"} "twitter"]
           [:a {:href "https://github.com/taoroalin"} "github"]
