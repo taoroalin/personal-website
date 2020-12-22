@@ -6,7 +6,7 @@
    [reitit.frontend :as reitit]
    [clerk.core :as clerk]
    [accountant.core :as accountant]
-   [graphminer.net.blogs :refer [blogs-hiccup]]))
+   [graphminer.net.blogs :refer [blogs]]))
 
 ;; -------------------------
 ;; Routes
@@ -27,10 +27,10 @@
 
 
 (defn blog []
-  (print blogs-hiccup)
-  (fn [] [:div blogs-hiccup]))
+  (fn [] [:div.blog (for [blog blogs] [:div [:h2 (:title blog)] (:hiccup blog)])]))
 
 (defn about-page []
+  (print blogs)
   (fn [] [:span.main
           [:h1 "About graphminer.net"]]))
 

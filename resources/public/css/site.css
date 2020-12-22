@@ -7,6 +7,14 @@ li {
   margin-top: 20px;
 }
 
+ul {
+  padding-left: 0px;
+}
+
+.blog {
+  margin: 40px;
+}
+
 .body-container {
   font-family: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
   max-width: 800px;
