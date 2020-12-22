@@ -27,12 +27,12 @@
 
 
 (defn blog []
-  (fn [] [:div.blog (for [blog blogs] [:div [:h2 (:title blog)] (:hiccup blog)])]))
+  (fn [] [:div.blog (for [blog blogs] ^{:key (:title blog)} [:div [:h2 (:title blog)] (:hiccup blog)])]))
 
 (defn about-page []
-  (print blogs)
   (fn [] [:span.main
-          [:h1 "About graphminer.net"]]))
+          [:p "I program in Clojure, TypeScript, and most recently C#. I'm currently working on a VR tool for working inside network graphs."]
+          [:p "My favorite musician is " [:a {:href "https://open.spotify.com/artist/0xu4jAQQv7ZAqvFGdc9HgP?autoplay=true"} "Boy in Space"] ", my favorite shape is the " [:a {:href "https://en.wikipedia.org/wiki/Great_stellated_120-cell"} "Great Stellated 120 Cell"] ", my favorite video game is " [:a {:href "https://store.steampowered.com/app/617830/SUPERHOT_VR/"} "Superhot VR"]]]))
 
 
 ;; -------------------------
@@ -54,7 +54,7 @@
       [:div
        [:header {:style {:display "flex" :flex-direction "row" :align-items "center"}}
         [:h1 {:style {:margin-right "30px"}} "Tao Lin"]
-        [:p [:a {:href (path-for :index)} "About"] " | "
+        [:p [:a {:href (path-for :about)} "About"] " | "
          [:a {:href (path-for :blog)} "Blog"] " | "
          [:a {:href "https://boiling-peak-00646.herokuapp.com/"} "Web Dev Demo"]]]
        [page]
